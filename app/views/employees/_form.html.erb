@@ -15,9 +15,16 @@
     <%= form.date_field :date_of_joining%>
   
     <%= form.fields_for :phone_numbers do |phone| %>
-      PhoneNumber <%i = 0%><% i+=1 %>:<br/>
-      <%= phone.label :phone_number, "Phone number" %>
-      <%= phone.number_field :phone_number%>
+      <% if phone.object.persisted? %>
+        PhoneNumber <%= phone.index + 1 %>:<br/>
+        <%= phone.label :phone_number, "Phone number" %>
+        <%= phone.number_field :phone_number %>
+      <% else %>
+        <% # If the phone number is being added for the first time, display blank fields %>
+        PhoneNumber <%= phone.index + 1 %>:<br/>
+        <%= phone.label :phone_number, "Phone number" %>
+        <%= phone.number_field :phone_number %>
+      <% end %>
     <% end %>
   
     <%= form.label :salary, style: "display: block" %>

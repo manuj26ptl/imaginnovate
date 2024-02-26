@@ -1,25 +1,48 @@
+<head>
+  <title>Tax Deductions</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
 <h1>Employees Details</h1>
-<table> 
-  <tr class="table table-dark">
-  <th>Employee Id</th><th>First Name</th><th>Last Name</th><th>Email</th><th>phone_number</th><th>Date Of Joining</th><th>Edit</th> <th>Delete</th>
-  </tr>
-  <% @employees.each do |employee| %>
-    <tr>
-      <td><%=employee.employee_id %></td>
-      <td><%=employee.first_name %>
-      <td><%=employee.last_name %>
-      <td><%=employee.email %></td>
-
-      <td>
-      <% employee.phone_numbers&.each do |a|%>
-        <%= a.phone_number%>,
-      <%end%></td>
-
-      <td><%= employee.date_of_joining%><td>
-      <td><%= button_to 'Edit', edit_employee_path(employee), method: :get%></td>
-      <td><%= button_to 'Delete', employee_path(employee), method: :delete%></td>
+<body>
+  <table> 
+    <tr class="table table-dark">
+    <th>Employee Id</th><th>First Name</th><th>Last Name</th><th>Email</th><th>phone_number</th><th>Date Of Joining</th><th>Edit</th> <th>Delete</th>
     </tr>
-  <% end %>
-</table>
-<%= button_to "Add a New Employee", new_employee_path,method: :get %>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%=employee.employee_id %></td>
+        <td><%=employee.first_name %>
+        <td><%=employee.last_name %>
+        <td><%=employee.email %></td>
+        
+        <td>
+        <% employee.phone_numbers&.each do |a|%>
+          <%= a.phone_number%>,
+        <%end%></td>
+
+        <td><%= employee.date_of_joining%></td>
+        <td><%= button_to 'Edit', edit_employee_path(employee), method: :get%></td>
+        <td><%= button_to 'Delete', employee_path(employee), method: :delete%></td>
+        
+      </tr>
+    <% end %>
+  </table>
+</body>
+<%= button_to "Add a New Employee", new_employee_path,method: :get %> 
+<%= button_to 'Get Tax OF All Employee', tax_deduction_employees_path, method: :get%>
 

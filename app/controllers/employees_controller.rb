@@ -1,14 +1,12 @@
 class EmployeesController < ApplicationController
-  before_action :set, only: [:show, :edit, :update, :destroy]
+  before_action :set, only: [:edit, :update, :destroy]
   def index
     @employees=Employee.all
   end
 
   def new
     @employee =Employee.new
-    2.times { @employee.phone_numbers.build }
-
-    
+    2.times { @employee.phone_numbers.build }    
   end
 
   def create
@@ -22,20 +20,23 @@ class EmployeesController < ApplicationController
     end
   end
 
+  def tax_deduction
+    @employees = Employee.all
+    render 'tax_deduction', formats: :html
+  end
+
   def edit
   end
 
   def update
+    
     if @employee.update(employee_params)
       flash[:notice] = "Employee is successfully updated."
       redirect_to employees_path
     else
       flash[:errors] = @employee.errors.full_messages
-      redirect_to edit_employees_path
+      redirect_to edit_employee_path
     end
-  end
-
-  def show
   end
 
   def destroy

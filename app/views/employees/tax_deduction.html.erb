@@ -1,0 +1,48 @@
+<html>
+<head>
+  <title>Tax Deductions</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tax Deductions</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Yearly Salary</th>
+        <th>Tax Amount</th>
+        <th>Cess Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.employee_id %></td>
+          <td><%= employee.first_name %></td>
+          <td><%= employee.last_name %></td>
+          <td><%= employee.calculate_yearly_salary %></td>
+          <td><%= employee.calculate_tax%></td>
+          <td><%= employee.calculate_cess %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>
