@@ -1,0 +1,35 @@
+<%= form_with(model: @employee) do |form| %>
+    <%= form.label :employee_id,"Emplyee Id", style: "display: block"%>
+    <%= form.text_field :employee_id %>
+
+    <%= form.label :first_name,"First Name", style: "display: block"%>
+    <%= form.text_field :first_name %>
+    
+    <%= form.label :last_name,"Last Name", style: "display: block"%>
+    <%= form.text_field :last_name %>
+  
+    <%= form.label :email, style: "display: block" %>
+    <%= form.email_field :email %>
+  
+    <%= form.label :date_of_joining,"Date Of Joining", style: "display: block" %>
+    <%= form.date_field :date_of_joining%>
+  
+    <%= form.fields_for :phone_numbers do |phone| %>
+      PhoneNumber <%i = 0%><% i+=1 %>:<br/>
+      <%= phone.label :phone_number, "Phone number" %>
+      <%= phone.number_field :phone_number%>
+    <% end %>
+  
+    <%= form.label :salary, style: "display: block" %>
+    <%= form.number_field :salary%>
+  
+  <%=form.submit%>
+    
+<% end %>
+<% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |error| %>
+      <li style="color:red;"><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
